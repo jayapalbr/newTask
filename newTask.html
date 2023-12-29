@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: "rgba(0,0,0,0.4)"
+        }
+
+        .collapsible {
+            background-color: rgb(244, 244, 9);
+            color: black;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #f4c6c6;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: black;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        #mySidebar {
+            width: 250px;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+            transition: all 0.5s ease 0s;
+            background: rgb(17, 17, 17);
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #818181;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            right: 25px;
+            font-size: 16px;
+            margin-left: 50px;
+        }
+
+        .open-btn {
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .open-btn:hover {
+            color: #818181;
+        }
+
+        header {
+            background-color: blueviolet;
+            color: wheat;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #side-nav {
+            width: 250px;
+            background-color: black;
+            color: #f1f1f1;
+            height: 100vh;
+            overflow: hidden;
+            float: left;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        nav a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        nav a:hover {
+            background-color: aliceblue;
+        }
+
+        @media only screen and (max-width: 768px) {
+            nav {
+                width: 0;
+            }
+
+            .menu-btn {
+                display: block;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                cursor: pointer;
+                z-index: 1;
+            }
+
+        }
+
+        /* #toggleWelcomeButton {
+            background-color: black;
+            color: #fff;
+            position: relative;
+            top: 12%;
+            transform: translateY(-50%);
+            left: 90%;
+
+        } */
+
+        #welcome {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: white;
+            overflow: hidden;
+            transition: height 0.5s ease-in-out;
+        }
+
+        #welcome.active {
+            height: 100vh;
+        }
+
+        #mainContent {
+            margin-left: 305px;
+        }
+
+        #closeWelcome {
+            display: flex;
+            justify-content: flex-end;
+            display: none;
+        }
+
+        #toggleWelcomeButton {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="collapsible">Layout of responsive</button>
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat</p>
+    </div>
+
+    <nav>
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">Close</a>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+        <button class="open-btn" onclick="openNav()">Open</button>
+    </nav>
+
+    <section id="mainContent">
+        <button id="toggleWelcomeButton" onclick="toggleWelcome()">Open</button>
+        <button id="closeWelcome" onclick="toggleClose()">Close</button>
+        <p>dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequatLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et</p>
+    </section>
+
+    <script>
+        // Header
+        let coll = document.getElementsByClassName("collapsible");
+        let i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+        function openNav() {
+            document.getElementById("mainContent").style.marginLeft = "306px"
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("mySidebar").style.paddingLeft = "20px";
+            document.getElementById("mySidebar").style.paddingRight = "20px";
+            document.getElementById("mySidebar").style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.3)";
+            document.getElementById("mySidebar").style.transition = "0.5s";
+            document.getElementById("mySidebar").style.background = "#111";
+            document.querySelector('.page-content').style.marginLeft = "250px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("mySidebar").style.paddingLeft = "0";
+            document.getElementById("mySidebar").style.paddingRight = "0";
+            document.getElementById("mySidebar").style.boxShadow = "none";
+            document.querySelector('.page-content').style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+        function toggleWelcome() {
+            let welcome = document.getElementById("mainContent");
+            document.getElementById("mainContent").style.marginLeft = "0"
+            document.getElementById("toggleWelcomeButton").style.display = "none"
+            document.getElementById("closeWelcome").style.display = "inline"
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("mySidebar").style.paddingLeft = "0";
+            document.getElementById("mySidebar").style.paddingRight = "0";
+            document.getElementById("mySidebar").style.boxShadow = "none";
+            document.querySelector('.page-content').style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+        function toggleClose() {
+            document.getElementById("mainContent").style.marginLeft = "306px";
+            document.getElementById("toggleWelcomeButton").style.display = "inline"
+            document.getElementById("closeWelcome").style.display = "none"
+        }
+    </script>
+</body
